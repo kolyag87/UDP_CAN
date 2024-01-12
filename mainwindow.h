@@ -20,7 +20,7 @@ public:
 signals:
 //    void signal_connectToHost();
 //    void signal_disconnectFromHost();
-    void signal_sendToServer();
+    void signal_sendToServer(QByteArray dt);
 
 private slots:
 
@@ -36,6 +36,14 @@ private slots:
     void on_pB_stop_clicked();
 
 //    void on_pB_Send_clicked();
+
+    void on_pB_send_1_clicked();
+
+    void on_pB_send_2_clicked();
+
+    void on_pB_send_10_clicked();
+
+    void on_pB_set_3_clicked();
 
 private:
     TCP_Client *tcp_client;

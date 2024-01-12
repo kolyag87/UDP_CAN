@@ -6,6 +6,8 @@ TCP_Client::TCP_Client(QObject *parent) : QObject(parent)
 {
     port = PORT_TCP;
     ip = IP_SERVER;
+    ipSend = IP_CLIENT;
+    portSend = PORT_TCP;
 
 //    tcp_socket = new QTcpSocket(this);
 
@@ -104,15 +106,18 @@ void TCP_Client::slot_error(QAbstractSocket::SocketError err)
 
 
 
-void TCP_Client::slot_sendToServer()
+void TCP_Client::slot_sendToServer(QByteArray data)
 {
-    QByteArray bd;
+//    QByteArray bd;
 
-    bd = testrawdata.fromHex(testrawdata);
+//    bd = testrawdata.fromHex(testrawdata);
 
-    udp_socket->writeDatagram(bd.data(), bd.length(), QHostAddress(ip), port);
+    udp_socket->writeDatagram(data.data(), data.length(), QHostAddress(ipSend), portSend);
 
-//    emit signal_write_to_log(make_hex_log_data(bd));
+    qDebug() << data << ipSend << portSend;
+
+//    emit signal_write_to_log(make_hex_log_data(data));
+    make_hex_log_data(data);
 
 }
 

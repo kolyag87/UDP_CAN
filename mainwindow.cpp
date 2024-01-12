@@ -23,8 +23,8 @@ MainWindow::MainWindow(QWidget *parent) :
 //    connect(this, SIGNAL(signal_disconnectFromHost()),
 //            tcp_client, SLOT(slot_disconnectFromHost()));
 
-    connect(this, SIGNAL(signal_sendToServer()),
-            tcp_client, SLOT(slot_sendToServer()));
+    connect(this, SIGNAL(signal_sendToServer(QByteArray)),
+            tcp_client, SLOT(slot_sendToServer(QByteArray)));
 
     //connect(tcp_client, SIGNAL(signal_disconnected()), SLOT(slot_disconnected()));
 }
@@ -85,6 +85,217 @@ void MainWindow::on_pB_stop_clicked()
     tcp_client->udp_socket->disconnectFromHost();
 
     qDebug() << "STOP" << tcp_client->ip << tcp_client->port;
+}
+
+
+void MainWindow::on_pB_set_3_clicked()
+{
+    tcp_client->portSend = lE_Port_3->text().toInt();
+    tcp_client->ipSend = lE_IP_3->text();
+}
+
+
+void MainWindow::on_pB_send_1_clicked()
+{
+    QByteArray bd;
+
+    quint8 bt = 0;
+
+    //Заполняем 0
+//    bd.fill(0, 8);
+
+    if (chB_extID_1->checkState() == Qt::Checked)
+        bt |= (1<<7);               //Ext ID
+    bt |= lE_DLC_1->text().toInt();
+    bd.append(bt);
+
+//    quint32 id = lE_ID_1->text().toUtf8();
+    bd.append(QByteArray::fromHex(lE_ID_1->text().toUtf8()));
+
+    bd.insert(5, 8, 0);
+
+    quint8 dlc = lE_DLC_1->text().toInt();
+    if (dlc > 0)
+    {
+        bd.replace(5, 1, QByteArray::fromHex(lE_D0_1->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(6, 1, QByteArray::fromHex(lE_D1_1->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(7, 1, QByteArray::fromHex(lE_D2_1->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(8, 1, QByteArray::fromHex(lE_D3_1->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(9, 1, QByteArray::fromHex(lE_D4_1->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(10, 1, QByteArray::fromHex(lE_D5_1->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(11, 1, QByteArray::fromHex(lE_D6_1->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(12, 1, QByteArray::fromHex(lE_D7_1->text().toUtf8()));
+        dlc--;
+    }
+
+    emit signal_sendToServer(bd);
+
+    qDebug() << bt << dlc << bd;
+
+}
+
+
+void MainWindow::on_pB_send_2_clicked()
+{
+    QByteArray bd;
+
+    quint8 bt = 0;
+
+    //Заполняем 0
+//    bd.fill(0, 8);
+
+    if (chB_extID_2->checkState() == Qt::Checked)
+        bt |= (1<<7);               //Ext ID
+    bt |= lE_DLC_2->text().toInt();
+    bd.append(bt);
+
+//    quint32 id = lE_ID_1->text().toUtf8();
+    bd.append(QByteArray::fromHex(lE_ID_2->text().toUtf8()));
+
+    bd.insert(5, 8, 0);
+
+    quint8 dlc = lE_DLC_2->text().toInt();
+    if (dlc > 0)
+    {
+        bd.replace(5, 1, QByteArray::fromHex(lE_D0_2->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(6, 1, QByteArray::fromHex(lE_D1_2->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(7, 1, QByteArray::fromHex(lE_D2_2->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(8, 1, QByteArray::fromHex(lE_D3_2->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(9, 1, QByteArray::fromHex(lE_D4_2->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(10, 1, QByteArray::fromHex(lE_D5_2->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(11, 1, QByteArray::fromHex(lE_D6_2->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(12, 1, QByteArray::fromHex(lE_D7_2->text().toUtf8()));
+        dlc--;
+    }
+
+    emit signal_sendToServer(bd);
+
+    qDebug() << bt << dlc << bd;
+
+}
+
+
+void MainWindow::on_pB_send_10_clicked()
+{
+    QByteArray bd;
+
+    quint8 bt = 0;
+
+    //Заполняем 0
+//    bd.fill(0, 8);
+
+    if (chB_extID_10->checkState() == Qt::Checked)
+        bt |= (1<<7);               //Ext ID
+    bt |= lE_DLC_10->text().toInt();
+    bd.append(bt);
+
+//    quint32 id = lE_ID_1->text().toUtf8();
+    bd.append(QByteArray::fromHex(lE_ID_10->text().toUtf8()));
+
+    bd.insert(5, 8, 0);
+
+    quint8 dlc = lE_DLC_10->text().toInt();
+    if (dlc > 0)
+    {
+        bd.replace(5, 1, QByteArray::fromHex(lE_D0_10->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(6, 1, QByteArray::fromHex(lE_D1_10->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(7, 1, QByteArray::fromHex(lE_D2_10->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(8, 1, QByteArray::fromHex(lE_D3_10->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(9, 1, QByteArray::fromHex(lE_D4_10->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(10, 1, QByteArray::fromHex(lE_D5_10->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(11, 1, QByteArray::fromHex(lE_D6_10->text().toUtf8()));
+        dlc--;
+    }
+    if (dlc > 0)
+    {
+        bd.replace(12, 1, QByteArray::fromHex(lE_D7_10->text().toUtf8()));
+        dlc--;
+    }
+
+    emit signal_sendToServer(bd);
+
+    qDebug() << bt << dlc << bd;
+
 }
 
 

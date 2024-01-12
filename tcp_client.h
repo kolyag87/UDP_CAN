@@ -10,6 +10,7 @@
 
 #define PORT_TCP                8881
 #define IP_SERVER               "192.168.3.100"
+#define IP_CLIENT               "192.168.3.101"
 
 
 class TCP_Client : public QObject
@@ -27,7 +28,7 @@ signals:
 public slots:
 //    void slot_connectToHost();
 //    void slot_disconnectFromHost();
-    void slot_sendToServer();
+    void slot_sendToServer(QByteArray);
 
 private slots:
 //    void slot_connected();
@@ -41,8 +42,9 @@ private slots:
 
 public:
 
-    quint16 port;
-    QString ip;
+    quint16 port, portSend;
+    QString ip, ipSend;
+
 //    quint32 time;
 
 //    QTcpSocket *tcp_socket;
