@@ -8,7 +8,7 @@
 #include <QTimer>
 
 
-#define PORT_TCP                8881
+#define PORT_TCP                8882
 #define IP_SERVER               "192.168.3.100"
 #define IP_CLIENT               "192.168.3.101"
 

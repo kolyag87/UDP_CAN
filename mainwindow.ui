@@ -89,6 +89,27 @@
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="pB_set">
+            <property name="text">
+             <string>Open</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pB_stop">
+            <property name="text">
+             <string>Close</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pB_clear">
+            <property name="text">
+             <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="horizontalSpacer_2">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -105,13 +126,6 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="pB_set">
-            <property name="text">
-             <string>Open</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <spacer name="horizontalSpacer_9">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -126,13 +140,6 @@
              </size>
             </property>
            </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pB_stop">
-            <property name="text">
-             <string>Close</string>
-            </property>
-           </widget>
           </item>
           <item>
            <spacer name="horizontalSpacer_4">
@@ -1593,6 +1600,27 @@
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="pB_set_2">
+            <property name="text">
+             <string>Open</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pB_stop_2">
+            <property name="text">
+             <string>Close</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pB_clear_2">
+            <property name="text">
+             <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="horizontalSpacer_7">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -1609,13 +1637,6 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="pB_set_2">
-            <property name="text">
-             <string>Open</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <spacer name="horizontalSpacer_10">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -1630,13 +1651,6 @@
              </size>
             </property>
            </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pB_stop_2">
-            <property name="text">
-             <string>Close</string>
-            </property>
-           </widget>
           </item>
           <item>
            <spacer name="horizontalSpacer_8">

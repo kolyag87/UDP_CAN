@@ -25,7 +25,7 @@ signals:
 private slots:
 
     void slot_write_to_log(QByteArray data);
-
+    void slot_write_to_log_2(QByteArray data);
 //    void slot_disconnected();
 
 //    void on_pB_connect_clicked();
@@ -34,6 +34,8 @@ private slots:
 
     void on_pB_set_clicked();
     void on_pB_stop_clicked();
+    void on_pB_set_2_clicked();
+    void on_pB_stop_2_clicked();
 
 //    void on_pB_Send_clicked();
 
@@ -44,6 +46,10 @@ private slots:
     void on_pB_send_10_clicked();
 
     void on_pB_set_3_clicked();
+
+
+    void on_pB_clear_clicked();
+    void on_pB_clear_2_clicked();
 
 private:
     TCP_Client *tcp_client;

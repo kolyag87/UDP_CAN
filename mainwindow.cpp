@@ -15,9 +15,12 @@ MainWindow::MainWindow(QWidget *parent) :
 //    lE_time->setValidator(new QIntValidator());
 
     tcp_client = new TCP_Client(this);
+    tcp_client_2 = new TCP_Client(this);
 
     connect(tcp_client, SIGNAL(signal_write_to_log(QByteArray)),
             SLOT(slot_write_to_log(QByteArray)));
+    connect(tcp_client_2, SIGNAL(signal_write_to_log(QByteArray)),
+            SLOT(slot_write_to_log_2(QByteArray)));
 //    connect(this, SIGNAL(signal_connectToHost()),
 //            tcp_client, SLOT(slot_connectToHost()));
 //    connect(this, SIGNAL(signal_disconnectFromHost()),
@@ -25,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(this, SIGNAL(signal_sendToServer(QByteArray)),
             tcp_client, SLOT(slot_sendToServer(QByteArray)));
+    connect(this, SIGNAL(signal_sendToServer(QByteArray)),
+            tcp_client_2, SLOT(slot_sendToServer(QByteArray)));
 
     //connect(tcp_client, SIGNAL(signal_disconnected()), SLOT(slot_disconnected()));
 }
@@ -33,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     tcp_client->~TCP_Client();
-
+    tcp_client_2->~TCP_Client();
     qDebug() << "~MainWindow()";
 }
 
@@ -44,6 +49,10 @@ void MainWindow::slot_write_to_log(QByteArray data)
     txBr_log->append(QString(data));
 }
 
+void MainWindow::slot_write_to_log_2(QByteArray data)
+{
+    txBr_log_2->append(QString(data));
+}
 
 //void MainWindow::on_pB_connect_clicked()
 //{
@@ -65,18 +74,34 @@ void MainWindow::slot_write_to_log(QByteArray data)
 
 //}
 
+void MainWindow::on_pB_clear_clicked()
+{
+    txBr_log->clear();
+}
 
+void MainWindow::on_pB_clear_2_clicked()
+{
+    txBr_log_2->clear();
+}
 
 void MainWindow::on_pB_set_clicked()
 {
     tcp_client->port = lE_Port->text().toInt();
     tcp_client->ip = lE_IP->text();
-
-//    tcp_client->udp_socket->bind(tcp_client->port);
     tcp_client->udp_socket->disconnectFromHost();
     tcp_client->udp_socket->bind(QHostAddress(tcp_client->ip), tcp_client->port);
 
     qDebug() << tcp_client->ip << tcp_client->port;
+}
+
+void MainWindow::on_pB_set_2_clicked()
+{
+    tcp_client_2->port = lE_Port_2->text().toInt();
+    tcp_client_2->ip = lE_IP_2->text();
+    tcp_client_2->udp_socket->disconnectFromHost();
+    tcp_client_2->udp_socket->bind(QHostAddress(tcp_client_2->ip), tcp_client_2->port);
+
+    qDebug() << tcp_client_2->ip << tcp_client_2->port;
 }
 
 
@@ -85,6 +110,13 @@ void MainWindow::on_pB_stop_clicked()
     tcp_client->udp_socket->disconnectFromHost();
 
     qDebug() << "STOP" << tcp_client->ip << tcp_client->port;
+}
+
+void MainWindow::on_pB_stop_2_clicked()
+{
+    tcp_client_2->udp_socket->disconnectFromHost();
+
+    qDebug() << "STOP" << tcp_client_2->ip << tcp_client_2->port;
 }
 
 
