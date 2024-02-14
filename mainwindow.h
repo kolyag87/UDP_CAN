@@ -2,11 +2,16 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFile>
+#include <QDir>
+#include <QString>
+#include <QDebug>
 #include "ui_mainwindow.h"
-
 #include "tcp_client.h"
 
-
+#define path_log_directory "../logs/"
+#define log1_filename "can1.txt"
+#define log2_filename "can2.txt"
 
 class MainWindow : public QMainWindow, Ui::MainWindow
 {
@@ -24,8 +29,10 @@ signals:
 
 private slots:
 
-    void slot_write_to_log(QByteArray data);
-    void slot_write_to_log_2(QByteArray data);
+    void slot_showData1(QByteArray data);
+    void slot_showData2(QByteArray data);
+    void slot_writeLog1(QByteArray data);
+    void slot_writeLog2(QByteArray data);
 //    void slot_disconnected();
 
 //    void on_pB_connect_clicked();
@@ -51,9 +58,17 @@ private slots:
     void on_pB_clear_clicked();
     void on_pB_clear_2_clicked();
 
+    void on_log1_button_clicked();
+    void on_log2_button_clicked();
+
+    void on_stopLog1_button_clicked();
+    void on_stopLog2_button_clicked();
+
 private:
     TCP_Client *tcp_client;
     TCP_Client *tcp_client_2;
+    bool allowLog1, allowLog2;
+    QFile logFile1, logFile2;
 
 };
 

@@ -90,6 +90,12 @@
           </item>
           <item>
            <widget class="QPushButton" name="pB_set">
+            <property name="minimumSize">
+             <size>
+              <width>75</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text">
              <string>Open</string>
             </property>
@@ -106,6 +112,46 @@
            <widget class="QPushButton" name="pB_clear">
             <property name="text">
              <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Path</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="log1_path">
+            <property name="minimumSize">
+             <size>
+              <width>41</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>41</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="log1_button">
+            <property name="text">
+             <string>Log</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="stopLog1_button">
+            <property name="text">
+             <string>Stop log</string>
             </property>
            </widget>
           </item>
@@ -1617,6 +1663,34 @@
            <widget class="QPushButton" name="pB_clear_2">
             <property name="text">
              <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Path</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="log2_path">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="log2_button">
+            <property name="text">
+             <string>Log</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="stopLog2_button">
+            <property name="text">
+             <string>Stop log</string>
             </property>
            </widget>
           </item>

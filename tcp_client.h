@@ -21,7 +21,9 @@ public:
     ~TCP_Client();
 
 signals:
-    void signal_write_to_log(QByteArray);
+    void signal_showData(QByteArray);
+    void signal_writeLog(QByteArray);
+
     void signal_sendToServer();
 //    void signal_disconnected();
 

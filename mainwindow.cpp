@@ -9,6 +9,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setWindowTitle("ECAN-E01S");
 
+    QDir logDir(path_log_directory);
+    if(logDir.exists())
+        qDebug() << "log directory is exist yet...";
+    else
+        logDir.mkdir(path_log_directory);
+
+    QString path_logDir = path_log_directory;
+    QString log1Filename = log1_filename;
+    QString log2Filename = log2_filename;
+    log1_path->setText(path_logDir + log1Filename);
+    log2_path->setText(path_logDir + log2Filename);
+    allowLog1 = false;
+    allowLog2 = false;
+
     txBr_log->document()->setMaximumBlockCount(2000);
 
     lE_Port->setValidator(new QIntValidator(1, 65535));
@@ -17,14 +31,15 @@ MainWindow::MainWindow(QWidget *parent) :
     tcp_client = new TCP_Client(this);
     tcp_client_2 = new TCP_Client(this);
 
-    connect(tcp_client, SIGNAL(signal_write_to_log(QByteArray)),
-            SLOT(slot_write_to_log(QByteArray)));
-    connect(tcp_client_2, SIGNAL(signal_write_to_log(QByteArray)),
-            SLOT(slot_write_to_log_2(QByteArray)));
-//    connect(this, SIGNAL(signal_connectToHost()),
-//            tcp_client, SLOT(slot_connectToHost()));
-//    connect(this, SIGNAL(signal_disconnectFromHost()),
-//            tcp_client, SLOT(slot_disconnectFromHost()));
+    connect(tcp_client, SIGNAL(signal_showData(QByteArray)),
+            SLOT(slot_showData1(QByteArray)));
+    connect(tcp_client_2, SIGNAL(signal_showData(QByteArray)),
+            SLOT(slot_showData2(QByteArray)));
+
+    connect(tcp_client, SIGNAL(signal_writeLog(QByteArray)),
+            SLOT(slot_writeLog1(QByteArray)));
+    connect(tcp_client_2, SIGNAL(signal_writeLog(QByteArray)),
+            SLOT(slot_writeLog2(QByteArray)));
 
     connect(this, SIGNAL(signal_sendToServer(QByteArray)),
             tcp_client, SLOT(slot_sendToServer(QByteArray)));
@@ -44,39 +59,77 @@ MainWindow::~MainWindow()
 
 
 
-void MainWindow::slot_write_to_log(QByteArray data)
+void MainWindow::slot_showData1(QByteArray data)
 {
     txBr_log->append(QString(data));
 }
 
-void MainWindow::slot_write_to_log_2(QByteArray data)
+void MainWindow::slot_showData2(QByteArray data)
 {
     txBr_log_2->append(QString(data));
 }
 
-//void MainWindow::on_pB_connect_clicked()
-//{
-//    lE_IP->setEnabled(false);
-//    lE_Port->setEnabled(false);
-//    lE_time->setEnabled(false);
-
-//    emit signal_connectToHost();
-//}
-
-
-//void MainWindow::on_pB_disconnect_clicked()
-//{
-//    lE_IP->setEnabled(true);
-//    lE_Port->setEnabled(true);
-//    lE_time->setEnabled(true);
-
-//    emit signal_disconnectFromHost();
-
-//}
 
 void MainWindow::on_pB_clear_clicked()
 {
     txBr_log->clear();
+}
+
+void MainWindow::on_log1_button_clicked()
+{
+    QString path = log1_path->text();
+
+    logFile1.setFileName(path);
+    if(logFile1.exists())
+        logFile1.remove();
+
+    if(logFile1.open(QFile::ReadWrite | QFile::Text) == false)
+        qDebug() << "file " << path << " does not open...";
+    else
+        allowLog1  = true;
+}
+
+void MainWindow::slot_writeLog1(QByteArray data)
+{
+    if(allowLog1 == true)
+    {
+        logFile1.write(data + "\r\n");
+    }
+}
+
+
+void MainWindow::on_stopLog1_button_clicked()
+{
+    allowLog1 = false;
+    logFile1.close();
+}
+
+void MainWindow::on_log2_button_clicked()
+{
+    QString path = log2_path->text();
+
+    logFile2.setFileName(path);
+    if(logFile2.exists())
+        logFile2.remove();
+
+    if(logFile2.open(QFile::ReadWrite | QFile::Text) == false)
+        qDebug() << "file " << path << " does not open...";
+    else
+        allowLog2 = true;
+}
+
+void MainWindow::slot_writeLog2(QByteArray data)
+{
+    if(allowLog2 == true)
+    {
+        logFile2.write(data + "\r\n");
+    }
+}
+
+void MainWindow::on_stopLog2_button_clicked()
+{
+    allowLog2 = false;
+    logFile2.close();
 }
 
 void MainWindow::on_pB_clear_2_clicked()

@@ -79,8 +79,8 @@ void TCP_Client::slot_readyRead()
         udp_socket->readDatagram(bd.data(), bd.size(),
                                 &sender, &senderPort);
 
-//        emit signal_write_to_log(make_hex_log_data("receive\n\r"));
-//        emit signal_write_to_log(make_hex_log_data(bd));
+//        emit signal_showData(make_hex_log_data("receive\n\r"));
+//        emit signal_showData(make_hex_log_data(bd));
         make_hex_log_data(bd);
     }
 
@@ -99,7 +99,7 @@ void TCP_Client::slot_error(QAbstractSocket::SocketError err)
     "The connection was refused." :
     QString(udp_socket->errorString())
     );
-    emit signal_write_to_log(strError.toLocal8Bit());
+    emit signal_showData(strError.toLocal8Bit());
 
 }
 
@@ -116,7 +116,7 @@ void TCP_Client::slot_sendToServer(QByteArray data)
 
     qDebug() << data << ipSend << portSend;
 
-//    emit signal_write_to_log(make_hex_log_data(data));
+//    emit signal_showData(make_hex_log_data(data));
     make_hex_log_data(data);
 
 }
@@ -162,7 +162,8 @@ void TCP_Client::make_hex_log_data(QByteArray data)
         bd.append(ba);
 //        bd.append("\r");
 
-        emit signal_write_to_log(bd);
+        emit signal_showData(bd);
+        emit signal_writeLog(bd);
     }
 
 //    return ba;
