@@ -6,12 +6,15 @@
 #include <QDir>
 #include <QString>
 #include <QDebug>
+#include <QTimer>
 #include "ui_mainwindow.h"
 #include "tcp_client.h"
 
 #define path_log_directory "../logs/"
 #define log1_filename "can1.txt"
 #define log2_filename "can2.txt"
+
+#define PERIOD_CYCLE_SEND   1000        //msec
 
 class MainWindow : public QMainWindow, Ui::MainWindow
 {
@@ -33,6 +36,8 @@ private slots:
     void slot_showData2(QByteArray data);
     void slot_writeLog1(QByteArray data);
     void slot_writeLog2(QByteArray data);
+
+    void slot_timerCycle_timeout();
 //    void slot_disconnected();
 
 //    void on_pB_connect_clicked();
@@ -64,11 +69,14 @@ private slots:
     void on_stopLog1_button_clicked();
     void on_stopLog2_button_clicked();
 
+    void on_pB_stop_3_clicked();
+    
 private:
     TCP_Client *tcp_client;
     TCP_Client *tcp_client_2;
     bool allowLog1, allowLog2;
     QFile logFile1, logFile2;
+    QTimer *timerCycle;
 
 };
 

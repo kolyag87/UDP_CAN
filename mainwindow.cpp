@@ -31,6 +31,8 @@ MainWindow::MainWindow(QWidget *parent) :
     tcp_client = new TCP_Client(this);
     tcp_client_2 = new TCP_Client(this);
 
+    timerCycle = new QTimer(this);
+
     connect(tcp_client, SIGNAL(signal_showData(QByteArray)),
             SLOT(slot_showData1(QByteArray)));
     connect(tcp_client_2, SIGNAL(signal_showData(QByteArray)),
@@ -45,6 +47,8 @@ MainWindow::MainWindow(QWidget *parent) :
             tcp_client, SLOT(slot_sendToServer(QByteArray)));
     connect(this, SIGNAL(signal_sendToServer(QByteArray)),
             tcp_client_2, SLOT(slot_sendToServer(QByteArray)));
+
+    connect (timerCycle, SIGNAL(timeout()),SLOT(slot_timerCycle_timeout()));
 
     //connect(tcp_client, SIGNAL(signal_disconnected()), SLOT(slot_disconnected()));
 }
@@ -311,9 +315,27 @@ void MainWindow::on_pB_send_2_clicked()
 
     emit signal_sendToServer(bd);
 
+    if ( (chB_cycle_2->checkState() == Qt::Checked) && (!timerCycle->isActive()) )
+        timerCycle->start(PERIOD_CYCLE_SEND);
+
     qDebug() << bt << dlc << bd;
 
 }
+
+void MainWindow::on_pB_stop_3_clicked()
+{
+    timerCycle->stop();
+
+    qDebug() << "STOP cycle timer";
+}
+
+
+void MainWindow::slot_timerCycle_timeout()
+{
+    emit on_pB_send_2_clicked();
+    qDebug() << "timerCycle timeout";
+}
+
 
 
 void MainWindow::on_pB_send_10_clicked()
