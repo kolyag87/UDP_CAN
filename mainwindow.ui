@@ -379,7 +379,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>0607F780</string>
+                <string>06081F80</string>
                </property>
                <property name="maxLength">
                 <number>8</number>
@@ -794,7 +794,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>0607F781</string>
+                <string>06081F80</string>
                </property>
                <property name="maxLength">
                 <number>8</number>
@@ -975,7 +975,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>43</string>
+                <string>44</string>
                </property>
                <property name="maxLength">
                 <number>2</number>
@@ -1004,7 +1004,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>FA</string>
+                <string>16</string>
                </property>
                <property name="maxLength">
                 <number>2</number>
@@ -1258,7 +1258,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>06080F82</string>
+                <string>06081F80</string>
                </property>
                <property name="maxLength">
                 <number>8</number>
@@ -1323,7 +1323,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>10</string>
+                <string>03</string>
                </property>
                <property name="maxLength">
                 <number>2</number>
@@ -1410,7 +1410,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>40</string>
+                <string>1B</string>
                </property>
                <property name="maxLength">
                 <number>2</number>
@@ -1497,7 +1497,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>00</string>
+                <string>A0</string>
                </property>
                <property name="maxLength">
                 <number>2</number>
