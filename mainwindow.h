@@ -52,13 +52,18 @@ private slots:
 //    void on_pB_Send_clicked();
 
     void on_pB_send_1_clicked();
+    void on_pB_send_3_clicked();
 
     void on_pB_send_2_clicked();
+    void on_pB_send_5_clicked();
+
 
     void on_pB_send_10_clicked();
+    void on_pB_send_14_clicked();
+
 
     void on_pB_set_3_clicked();
-
+    void on_pB_set_4_clicked();
 
     void on_pB_clear_clicked();
     void on_pB_clear_2_clicked();
