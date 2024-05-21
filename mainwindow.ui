@@ -1185,6 +1185,16 @@
               </widget>
              </item>
              <item>
+              <widget class="QLabel" name="label_21">
+               <property name="text">
+                <string>Period:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="editLine_period"/>
+             </item>
+             <item>
               <spacer name="horizontalSpacer_50">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>

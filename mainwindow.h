@@ -75,7 +75,7 @@ private slots:
     void on_stopLog2_button_clicked();
 
     void on_pB_stop_3_clicked();
-    
+
 private:
     TCP_Client *tcp_client;
     TCP_Client *tcp_client_2;

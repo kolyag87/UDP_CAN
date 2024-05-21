@@ -387,12 +387,18 @@ void MainWindow::on_pB_send_2_clicked()
 
     emit signal_sendToServer(bd);
 
+
     if ( (chB_cycle_2->checkState() == Qt::Checked) && (!timerCycle->isActive()) )
-        timerCycle->start(PERIOD_CYCLE_SEND);
+        timerCycle->start(editLine_period->text().toInt());
+
+//    timerCycle->start(editLine_period->text().toInt());
 
     qDebug() << bt << dlc << bd;
 
 }
+
+
+
 
 void MainWindow::on_pB_send_5_clicked()
 {
